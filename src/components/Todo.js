@@ -1,34 +1,36 @@
-import React from "react";
+// import React from "react";
+import { useState } from "react";
+import Backdrop from './Backdrop';
+import Modal from "./Modal";
 
-class Todo extends React.Component {
-  constructor(props) {
-    super(props);
-    this.title = this.props.text;
-    this.state = {count: 0}
-    this.handleClick = this.handleClick.bind(this);
+function Todo(props) {
+  const [modalIsOpen, setModalOpen] = useState(false);
+
+  function deleteHandler() {
+    setModalOpen(false)
   }
-  handleClick(event){
-        event.preventDefault()
-        this.setState({count: this.state.count +1})
-        console.log(`clicked ${this.title} ${this.state.count} times!`);
+  function setModalHandler(){
+    setModalOpen(true)
   }
-  render() {
-    return (
-      <div className="card">
-        <h1 className="text-center">{this.title}</h1>
-        <div>
-          <div className="row container-fluid">
-            <div className="col col-xs-4">
-              
-            </div>
-            <div className="col col-xs-5">
-              <button className="btn btn-danger" onClick={this.handleClick}>Delete</button>
-            </div>
+
+  return (
+    <div className="card">
+      <h1 className="text-center">{props.text}</h1>
+      <div>
+        <div className="row container-fluid">
+          <div className="col col-xs-4"></div>
+          <div className="col col-xs-5">
+            <button className="btn btn-danger" onClick={setModalHandler}>
+              Delete
+            </button>
           </div>
         </div>
       </div>
-    );
-  }
+      { modalIsOpen &&  <Backdrop onClick={deleteHandler}/>}
+      { modalIsOpen &&  <Modal onCancel={deleteHandler} onConfirm={deleteHandler}/>}
+     
+    </div>
+  );
 }
 
 export default Todo;

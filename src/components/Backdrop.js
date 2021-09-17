@@ -1,26 +1,12 @@
 import React from "react";
 import Modal from "./Modal";
 
-class Backdrop extends React.Component {
-    // constructor(props){
-    //     super(props)
-    // }
-
-
-
-    render(){
-        return(
-            <div className="backdrop">
-                <Modal />
-            </div>
-        )
-    }
+function Backdrop(props) {
+  return (
+    <div className="backdrop" onClick={props.onClick}>
+      <Modal onCancel={props.onClick}/>
+    </div>
+  );
 }
 
-
-
-
-
-
-
-export default Backdrop
+export default Backdrop;
