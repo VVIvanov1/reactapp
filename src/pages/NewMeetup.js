@@ -3,6 +3,7 @@ import NewMeetupForm from "../components/meetups/NewMeetupForm";
 
 function NewMeetup() {
   const history = useHistory();
+  console.log(history);
   function AddMeetupHandler(meetupData) {
     // console.log(history)
     fetch("https://meetups-3cbbb-default-rtdb.firebaseio.com/meetups.json", {
