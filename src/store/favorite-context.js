@@ -1,15 +1,14 @@
 import { createContext, useState } from "react";
-// import { useEffect } from "react/cjs/react.development";
 const FavoritesContext = createContext({
   favorites: [],
   totalFavorites: 0,
   addFavorite: (favoriteMeetup) => {},
-    removeFavorite: (meetupId) => {},
-    itemIsFavorite: (meetupId) => {}
+  removeFavorite: (meetupId) => {},
+  itemIsFavorite: (meetupId) => {},
 });
 
 export function FavoritesContextProvider(props) {
-  const [userFavorites, setUserFavorites] = useState();
+  const [userFavorites, setUserFavorites] = useState([]);
   function addFavoriteHandler(favoriteMeetup) {
     setUserFavorites((prevUserFavorites) => {
       return prevUserFavorites.concat(favoriteMeetup);
@@ -29,7 +28,7 @@ export function FavoritesContextProvider(props) {
     totalFavorites: userFavorites.length,
     addFavorite: addFavoriteHandler,
     removeFavorite: removeFavoriteHandler,
-    itemIsFavorite: itemIsFavoriteHandler
+    itemIsFavorite: itemIsFavoriteHandler,
   };
   return (
     <FavoritesContext.Provider value={context}>
